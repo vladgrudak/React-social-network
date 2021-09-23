@@ -1,6 +1,8 @@
+import s from "./Profile.module.css";
+
 const Profile = () => {
     return (
-        <div className='content'>
+        <div className={s.content}>
             <div>
                 <img src='https://c.wallhere.com/photos/d1/bd/3840x2160_px_bridge_sea_sunset-1420607.jpg!d'/>
             </div>
@@ -12,14 +14,14 @@ const Profile = () => {
                 <div>
                     New Post
                 </div>
-                <div>
-                    <div>
+                <div className={s.post}>
+                    <div className={s.item}>
                         Post1
                     </div>
-                    <div>
+                    <div className={s.item}>
                         Post2
                     </div>
-                    <div>
+                    <div className={s.item}>
                         Post3
                     </div>
                 </div>
