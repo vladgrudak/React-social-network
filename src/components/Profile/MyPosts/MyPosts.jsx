@@ -6,15 +6,15 @@ const MyPosts = () => {
         <div>
             My posts
             <div>
-                <textarea></textarea>
+                <textarea>TextArea</textarea>
                 <button>Add Post</button>
             </div>
             <div className={s.post}>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
+                <Post message='My first Post' likeCounts='10' />
+                <Post message='Hello World!' likeCounts='11' />
+                <Post message='Sosisochka krasivaya' likeCounts='12'/>
+                <Post message='Sosisochka krasivaya' likeCounts='15'/>
+                <Post message='Sosisochka krasivaya' likeCounts='17'/>
             </div>
         </div>
     );
