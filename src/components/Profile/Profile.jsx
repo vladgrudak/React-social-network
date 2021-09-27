@@ -3,7 +3,7 @@ import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = () => {
     return (
-        <div className={s.content}>
+        <div>
             <div className={s.bigPic}>
                 <img alt='Profile-big-img' src='https://c.wallhere.com/photos/d1/bd/3840x2160_px_bridge_sea_sunset-1420607.jpg!d'/>
             </div>
