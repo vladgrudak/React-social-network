@@ -4,20 +4,32 @@ import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 
 const Dialogs = (props) => {
+
+    let dialogsData = [
+        {id: 1, name: 'Vlad'},
+        {id: 2, name: 'Nelly'},
+        {id: 3, name: 'Serega'},
+        {id: 4, name: 'Nastya'},
+        {id: 5, name: 'Vova'},
+    ]
+
+    let messagesData = [
+        {id: 1, message: 'Ты - лучший, у тебя всё получится!'},
+        {id: 2, message: 'Конечно!'},
+        {id: 3, message: 'Я очень рад!'},
+        {id: 4, message: 'И я очень рад))'},
+        {id: 5, message: ':-D'},
+    ]
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
-                <Dialog id='1' name='Vlad' />
-                <Dialog id='2' name='Nelly' />
-                <Dialog id='3' name='Serega' />
-                <Dialog id='4' name='Nastya' />
-                <Dialog id='5' name='Ilya' />
+                <Dialog id={dialogsData[0].id} name={dialogsData[0].name}/>
+                <Dialog id={dialogsData[1].id} name={dialogsData[1].name}/>
             </div>
             <div className={s.messages}>
-                <Message messageText='Ты - лучший, у тебя всё получится!' id='1' />
-                <Message messageText='Конечно!' id='2'/>
-                <Message messageText='Я очень рад!' id='3'/>
-                <Message messageText='И я очень рад))' id='4'/>
+                <Message id={messagesData[0].id} message={messagesData[0].message}/>
+                <Message id={messagesData[1].id} message={messagesData[1].message}/>
             </div>
         </div>
     );
