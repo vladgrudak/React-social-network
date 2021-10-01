@@ -8,9 +8,7 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import Dialog from "./components/Dialogs/Dialog/Dialog";
-import Message from "./components/Dialogs/Message/Message";
-import Post from "./components/Profile/MyPosts/Post/Post";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 
 
@@ -23,9 +21,14 @@ const App = (props) => {
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
+                <Sidebar state={props.state.sidebar}/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
-                    <Route path='/profile' render={() => <Profile posts={props.posts}/>}/>
+                    <Route path='/dialogs' render={() =>
+                        <Dialogs state={props.state.dialogsPage}/>}
+                    />
+                    <Route path='/profile' render={() =>
+                        <Profile state={props.state.profilePage}/>}
+                    />
                     <Route path='/news' render={() => <News />}/>
                     <Route path='/music' render={() => <Music />}/>
                     <Route path='/settings' render={() => <Settings />}/>
