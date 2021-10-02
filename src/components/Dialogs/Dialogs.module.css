@@ -14,3 +14,7 @@
 .messages .message {
 
 }
+
+.messageField {
+    text-align: left;
+}

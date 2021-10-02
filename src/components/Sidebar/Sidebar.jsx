@@ -10,7 +10,9 @@ const Sidebar = (props) => {
             <div>
                 <h3>Friends</h3>
             </div>
+            <div className={s.friendsBlock}>
             {friends}
+            </div>
         </div>
     )
 }
