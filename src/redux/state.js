@@ -1,3 +1,5 @@
+import {rerenderAllTree} from "../render";
+
 let state = {
     profilePage : {
         posts : [
@@ -36,13 +38,16 @@ let state = {
 }
 
 export let addPost = (postMessage) => {
+    let lastId = state.profilePage.posts[state.profilePage.posts.length-1].id + 1
     let newPost = {
-        id:5,
+        id: lastId ,
         message: postMessage,
         likesCount: 0
     }
 
     state.profilePage.posts.push(newPost)
+    rerenderAllTree(state, addPost)
+    debugger;
 }
 
 export default state;
