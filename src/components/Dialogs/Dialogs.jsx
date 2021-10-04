@@ -1,17 +1,22 @@
 import s from "./Dialogs.module.css"
-import {NavLink} from "react-router-dom";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 import React from "react";
+import {changeNewMessageText} from "../../redux/state";
 
 const Dialogs = (props) => {
-    let dialogsElements = props.state.dialogs.map(d =>  <Dialog id={d.id} name={d.name} />)
-    let messagesElements = props.state.messages.map(m => <Message id={m.id} message={m.message}/>)
+    let dialogsElements = props.dialogsPage.dialogs.map(d =>  <Dialog id={d.id} name={d.name} />)
+    let messagesElements = props.dialogsPage.messages.map(m => <Message id={m.id} message={m.message}/>)
 
     let messageText = React.createRef();
 
-    let toSendMessage = () => {
-        alert(messageText.current.value)
+    let SendMessage = () => {
+        props.addMessage()
+    }
+
+    let updateMessageText = () => {
+        let text = messageText.current.value
+        props.changeNewMessageText(text)
     }
 
     return (
@@ -24,8 +29,8 @@ const Dialogs = (props) => {
             </div>
             <div></div>
             <div className={s.messageField}>
-                <textarea ref={messageText} >Text</textarea>
-                <button onClick={toSendMessage}>Отправить</button>
+                <textarea onChange={updateMessageText} ref={messageText} value={props.dialogsPage.newMessageText}/>
+                <button onClick={SendMessage}>Отправить</button>
             </div>
         </div>
     );

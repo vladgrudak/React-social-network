@@ -9,6 +9,7 @@ let state = {
             {id: 4, message: 'Sochnaya kukolka', likesCount: 9},
             {id: 5, message: 'Marinovannyi ogurets!', likesCount: 16},
         ],
+        newPostText: ''
     },
 
     dialogsPage: {
@@ -26,6 +27,7 @@ let state = {
             {id: 4, message: 'И я очень рад))'},
             {id: 5, message: ':-D'},
         ],
+        newMessageText : '',
     },
 
     sidebar : {
@@ -37,17 +39,41 @@ let state = {
     }
 }
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
     let lastId = state.profilePage.posts[state.profilePage.posts.length-1].id + 1
     let newPost = {
         id: lastId ,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCount: 0
     }
 
     state.profilePage.posts.push(newPost)
-    rerenderAllTree(state, addPost)
-    debugger;
+    state.profilePage.newPostText = ''
+    rerenderAllTree(state)
+}
+
+export let changeNewPostText = (postText) => {
+    state.profilePage.newPostText = postText
+
+    rerenderAllTree(state)
+}
+
+export let addMessage = () => {
+    let lastId = state.dialogsPage.messages[state.dialogsPage.messages.length -1].id +1
+    let newMessage = {
+        id: lastId,
+        message: state.dialogsPage.newMessageText
+    }
+
+    state.dialogsPage.messages.push(newMessage)
+    state.dialogsPage.newMessageText = ''
+    rerenderAllTree(state)
+}
+
+export let changeNewMessageText = (text) => {
+    state.dialogsPage.newMessageText = text
+
+    rerenderAllTree(state)
 }
 
 export default state;
