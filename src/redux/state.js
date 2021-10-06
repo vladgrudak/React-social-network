@@ -2,7 +2,6 @@ let store = {
     _callSubscriber() {
         return 'there is not subs here'
     },
-
     _state: {
         profilePage: {
             posts: [
@@ -42,47 +41,41 @@ let store = {
         }
     },
 
+    subscribe(observer) {
+        this._callSubscriber = observer
+    },
     getState() {
         return this._state
     },
 
-    addPost() {
-        debugger;
-        let lastId = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1
-        let newPost = {
-            id: lastId,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let lastId = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1
+            let newPost = {
+                id: lastId,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber(this._state)
+        } else if (action.type === 'CHANGE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.postText
+            this._callSubscriber(this._state)
+        } else if (action.type === 'ADD-MESSAGE') {
+            let lastId = this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1
+            let newMessage = {
+                id: lastId,
+                message: this._state.dialogsPage.newMessageText
+            }
+
+            this._state.dialogsPage.messages.push(newMessage)
+            this._state.dialogsPage.newMessageText = ''
+            this._callSubscriber(this._state)
+        } else if (action.type === 'CHANGE-NEW-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessageText = action.text
+            this._callSubscriber(this._state)
         }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber(this._state)
-    },
-
-    changeNewPostText (postText) {
-        this._state.profilePage.newPostText = postText
-        this._callSubscriber(this._state)
-    },
-
-    addMessage() {
-        let lastId = this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1
-        let newMessage = {
-            id: lastId,
-            message: this._state.dialogsPage.newMessageText
-        }
-
-        this._state.dialogsPage.messages.push(newMessage)
-        this._state.dialogsPage.newMessageText = ''
-        this._callSubscriber(this._state)
-    },
-
-    changeNewMessageText(text) {
-        this._state.dialogsPage.newMessageText = text
-        this._callSubscriber(this._state)
-    },
-
-    subscribe(observer) {
-        this._callSubscriber = observer
     }
 }
 
