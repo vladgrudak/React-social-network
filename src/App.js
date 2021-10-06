@@ -11,10 +11,6 @@ import Settings from "./components/Settings/Settings";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 
-
-
-
-
 const App = (props) => {
     return (
         <BrowserRouter>
