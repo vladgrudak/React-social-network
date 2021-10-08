@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const CHANGE_NEW_MESSAGE_TEXT = 'CHANGE-NEW-MESSAGE-TEXT';
+
 let store = {
     _callSubscriber() {
         return 'there is not subs here'
@@ -49,7 +54,7 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let lastId = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1
             let newPost = {
                 id: lastId,
@@ -59,10 +64,10 @@ let store = {
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newPostText = ''
             this._callSubscriber(this._state)
-        } else if (action.type === 'CHANGE-NEW-POST-TEXT') {
+        } else if (action.type === CHANGE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.postText
             this._callSubscriber(this._state)
-        } else if (action.type === 'ADD-MESSAGE') {
+        } else if (action.type === ADD_MESSAGE) {
             let lastId = this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1
             let newMessage = {
                 id: lastId,
@@ -72,12 +77,21 @@ let store = {
             this._state.dialogsPage.messages.push(newMessage)
             this._state.dialogsPage.newMessageText = ''
             this._callSubscriber(this._state)
-        } else if (action.type === 'CHANGE-NEW-MESSAGE-TEXT') {
+        } else if (action.type === CHANGE_NEW_MESSAGE_TEXT) {
             this._state.dialogsPage.newMessageText = action.text
             this._callSubscriber(this._state)
         }
     }
 }
+
+export let addPostActionCreator = () => ({ type: ADD_POST })
+
+export let updateNewPostTextActionCreator = (text) =>
+    ({type: CHANGE_NEW_POST_TEXT, postText: text })
+
+export const addMessageActionCreator = () => ({type: ADD_MESSAGE})
+export const changeNewMessageTextActionCreator = (text) =>
+    ({type: CHANGE_NEW_MESSAGE_TEXT, text: text})
 
 
 export default store;
