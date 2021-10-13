@@ -3,8 +3,9 @@ import sidebarReducer from "./sidebar-reducer";
 import dialogsReducer from "./dialogs-reducer";
 
 let store = {
+
     _callSubscriber() {
-        return 'there is not subs here'
+        return ''
     },
     _state: {
         profilePage: {
@@ -36,20 +37,14 @@ let store = {
             newMessageText: '',
         },
 
-        sidebar: {
-            friends: [
-                {name: 'Sasha'},
-                {name: 'Sveta'},
-                {name: 'Serega'}
-            ]
-        }
+        sidebar: {}
     },
 
-    subscribe(observer) {
-        this._callSubscriber = observer
-    },
     getState() {
         return this._state
+    },
+    subscribe(observer) {
+        this._callSubscriber = observer
     },
 
     dispatch(action) {
@@ -58,7 +53,7 @@ let store = {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
-        this._callSubscriber(this._state)
+        this._callSubscriber(this.getState())
     }
 }
 
