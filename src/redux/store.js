@@ -37,7 +37,13 @@ let store = {
             newMessageText: '',
         },
 
-        sidebar: {}
+        sidebar: {
+            friends: [
+                {name: 'Sasha'},
+                {name: 'Sveta'},
+                {name: 'Serega'}
+            ]
+        }
     },
 
     getState() {
